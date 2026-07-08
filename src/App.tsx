@@ -218,27 +218,12 @@ export default function App() {
           <ul className="hidden items-center gap-8 text-sm font-medium text-gray-300 md:flex">
             <li><a href="#portfolio" className="transition hover:text-white">Portfólio</a></li>
             <li><a href="#sobre" className="transition hover:text-white">Sobre</a></li>
-            <li><a href="#servicos" className="transition hover:text-white">Serviços</a></li>
           </ul>
           <div className="flex items-center gap-2">
             <button className="rounded-full p-2 text-gray-300 transition hover:bg-white/5 hover:text-white" aria-label="Idioma">
               <Languages size={18} />
             </button>
-            <button 
-              onClick={() => setIsCartOpen(true)}
-              className="relative rounded-full p-2 text-gray-300 transition hover:bg-white/5 hover:text-white" 
-              aria-label="Carrinho"
-            >
-              <ShoppingCart size={18} />
-              {cart.length > 0 && (
-                <span
-                  className="absolute -right-0.5 -top-0.5 h-4 w-4 rounded-full text-[10px] font-bold leading-4 text-black text-center animate-pulse"
-                  style={{ background: ACCENT }}
-                >
-                  {cart.length}
-                </span>
-              )}
-            </button>
+
             <button
               onClick={() => handleBudgetRequest("Desenvolvimento Web")}
               className={`${gradientBtn} ml-2 hidden px-4 py-2 sm:inline-flex`}
@@ -502,87 +487,8 @@ export default function App() {
         </div>
       </section>
 
-      {/* SERVIÇOS */}
-      <section id="servicos" className="py-24 border-t border-white/5 bg-[#0F0E17]/40">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h2 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">
-              Serviços de{" "}
-              <span
-                className="bg-clip-text text-transparent"
-                style={{ backgroundImage: `linear-gradient(90deg, ${ACCENT}, ${ACCENT2})` }}
-              >
-                Desenvolvimento
-              </span>
-            </h2>
-            <div
-              className="mx-auto mt-3 h-0.5 w-16 rounded-full"
-              style={{ background: `linear-gradient(90deg, ${ACCENT}, ${ACCENT2})` }}
-            />
-          </div>
-
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {services.map((s) => (
-              <div
-                key={s.title}
-                className="flex flex-col rounded-2xl border border-white/10 bg-[#161522]/50 p-6 backdrop-blur transition hover:-translate-y-1 hover:border-[#00D2FF]/40 hover:shadow-[0_0_40px_-10px_rgba(0,210,255,0.5)]"
-              >
-                <div className="mx-auto flex h-32 w-32 items-center justify-center rounded-xl border border-white/5 bg-white/5 overflow-hidden">
-                  {s.img ? (
-                    <img
-                      src={s.img}
-                      alt={s.title}
-                      width={512}
-                      height={512}
-                      loading="lazy"
-                      className="h-full w-full object-cover"
-                    />
-                  ) : (
-                    <Code2 size={32} className="text-gray-500" />
-                  )}
-                </div>
-                <h3 className="mt-5 text-center text-base font-bold text-white min-h-[48px] flex items-center justify-center">{s.title}</h3>
-                <p className="text-center text-xs text-gray-400 mb-4">{s.subtitle}</p>
-                <ul className="mt-2 flex-1 space-y-2">
-                  {s.features.map((f) => (
-                    <li key={f} className="flex items-start gap-2 text-xs text-gray-300">
-                      <Check size={14} className="mt-0.5 shrink-0" style={{ color: ACCENT }} />
-                      {f}
-                    </li>
-                  ))}
-                </ul>
-                <div className="mt-5 border-t border-white/10 pt-4">
-                  <p className="text-[11px] text-gray-400">A partir de</p>
-                  <p
-                    className="bg-clip-text text-lg font-bold text-transparent"
-                    style={{ backgroundImage: `linear-gradient(90deg, ${ACCENT}, ${ACCENT2})` }}
-                  >
-                    {s.price}
-                  </p>
-                  <button
-                    onClick={() => addToCart(s)}
-                    className="mt-3 inline-flex w-full items-center justify-center gap-1.5 rounded-lg px-3 py-2 text-xs font-semibold text-black transition hover:brightness-110"
-                    style={gradientStyle}
-                  >
-                    <ShoppingCart size={14} /> Adicionar ao carrinho
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-12 text-center">
-            <button 
-              onClick={() => handleBudgetRequest("Portfólio de Serviços")}
-              className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
-            >
-              Consultar Outros Escopos
-            </button>
-          </div>
-        </div>
-      </section>
-
-      {/* FOOTER */}
+    
+ {/* FOOTER */}
       <footer className="border-t border-white/10 bg-[#0B0A11]">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-4 py-8 sm:flex-row sm:px-6 lg:px-8">
           <p className="text-sm text-gray-400">
@@ -612,69 +518,6 @@ export default function App() {
           </div>
         </div>
       </footer>
-
-      {/* SIDEBAR DO CARRINHO */}
-      {isCartOpen && (
-        <div className="fixed inset-0 z-50 flex justify-end bg-black/60 backdrop-blur-sm">
-          <div className="w-full max-w-md bg-[#12111A] h-full p-6 flex flex-col shadow-2xl border-l border-white/10">
-            <div className="flex items-center justify-between border-b border-white/10 pb-4">
-              <h2 className="text-lg font-bold flex items-center gap-2">
-                <ShoppingCart size={20} style={{ color: ACCENT }} /> Seu Carrinho
-              </h2>
-              <button 
-                onClick={() => setIsCartOpen(false)}
-                className="text-gray-400 hover:text-white rounded-full p-1 hover:bg-white/5"
-              >
-                <X size={20} />
-              </button>
-            </div>
-
-            <div className="flex-1 overflow-y-auto py-4 space-y-3">
-              {cart.length === 0 ? (
-                <div className="text-center text-gray-500 py-12">
-                  <ShoppingCart size={40} className="mx-auto mb-3 opacity-20" />
-                  Seu carrinho está vazio.
-                </div>
-              ) : (
-                cart.map((item, index) => (
-                  <div key={index} className="flex items-center justify-between p-3 rounded-xl bg-white/5 border border-white/5">
-                    <div>
-                      <h4 className="text-sm font-semibold text-white">{item.title}</h4>
-                      <p className="text-xs text-gray-400">{item.subtitle}</p>
-                      <p className="text-sm font-medium mt-1" style={{ color: ACCENT }}>{item.price}</p>
-                    </div>
-                    <button 
-                      onClick={() => removeFromCart(index)}
-                      className="text-gray-400 hover:text-rose-400 p-2 rounded-lg hover:bg-white/5"
-                      aria-label="Remover item"
-                    >
-                      <Trash2 size={16} />
-                    </button>
-                  </div>
-                ))
-              )}
-            </div>
-
-            {cart.length > 0 && (
-              <div className="border-t border-white/10 pt-4 space-y-4">
-                <div className="flex justify-between items-center text-sm font-semibold">
-                  <span className="text-gray-400">Valor Estimado:</span>
-                  <span className="text-xl text-white">
-                    R$ {cartTotal.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
-                  </span>
-                </div>
-                <button
-                  onClick={handleCheckout}
-                  className="w-full text-center font-bold text-black py-3 rounded-xl transition hover:brightness-110 flex items-center justify-center gap-2"
-                  style={gradientStyle}
-                >
-                  <MessageCircle size={18} /> Finalizar via WhatsApp
-                </button>
-              </div>
-            )}
-          </div>
-        </div>
-      )}
 
       {openProject && <ProjectModal project={openProject} onClose={() => setOpenProject(null)} />}
     </div>
