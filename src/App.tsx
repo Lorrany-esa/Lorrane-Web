@@ -22,6 +22,8 @@ import heroDev from "@/assets/hero-dev.png";
 import projectCityHall from "@/assets/project-cityhall.jpg";
 import projectMunicipal from "@/assets/project-municipal.jpg";
 import projectFashion from "@/assets/project-fashion.jpg";
+import tst from "@/assets/tst.jpg";
+
 
 import serviceEcommerce from "@/assets/service-ecommerce.jpg";
 import serviceInstitucional from "@/assets/service-institucional.jpg";
@@ -109,6 +111,26 @@ const projects: (Project & { id: string; category: string; img: string })[] = [
     ],
     tech: ["Next.js", "TypeScript", "React", "Tailwind"],
     demoUrl: "http://lorranevelosodevweb.com.br/",
+  },
+
+  {
+    id: "p4",
+    category: "E-commerce",
+    tag: "E-commerce",
+    img: tst,
+    title: "E-commerce - TST Distribuidora de equipamentos de EPI",
+    description:
+      "E-commerce focado em soluções de TI e vendas de equipamentos de EPI - segurança do trabalho.",
+    longDescription:
+      "Loja virtual completa para venda de equipamentos, com checkout otimizado e gestão de catálogo.",
+    pillars: ["Conversão", "Performance", "UX Mobile"],
+    features: [
+      "Catálogo completo de produtos",
+      "Solicitação de orçamentos de forma rápida",
+      "Permite que os clientes acompanhem as redes sociais",
+    ],
+    tech: ["Next.js", "TypeScript", "React", "Tailwind", "Supabase"],
+    demoUrl: "https://www.tstdistribuidora.com.br/",
   },
 ];
 
